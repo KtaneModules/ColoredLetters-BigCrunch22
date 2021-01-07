@@ -1,0 +1,21 @@
+{
+  "Author": "Panoptes (Xel), Pruz",
+  "Compatibility": "Untested",
+  "Contributors": {
+    "Developer": [ "Panoptes (Xel)" ],
+    "Manual": [ "Pruz" ]
+  },
+  "DefuserDifficulty": "Easy",
+  "Description": "Press four buttons in order based on the scores of  flashing sequences of colored letters. Tags: 4-buttons, gray-buttons, flashing-letters, times-new-roman",
+  "ExpertDifficulty": "Easy",
+  "ModuleID": "xelColoredLetters",
+  "Name": "Colored Letters",
+  "Origin": "Mods",
+  "Published": "2020-12-09",
+  "SortKey": "COLOREDLETTERS",
+  "SourceUrl": "https://github.com/Mirage-Xel/xelColoredLetters",
+  "Souvenir": { "Status": "NotACandidate" },
+  "SteamID": "2313739721",
+  "Symbol": "Clt",
+  "Type": "Regular"
+}
