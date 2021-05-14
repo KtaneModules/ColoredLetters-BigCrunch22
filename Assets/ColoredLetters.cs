@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using UnityEngine;
-using KModkit;
 using rnd = UnityEngine.Random;
 
 public class ColoredLetters : MonoBehaviour
@@ -22,7 +21,7 @@ public class ColoredLetters : MonoBehaviour
     
 	int[][] startingScores = new int[][]
     {
-        new int[] {5,4,2,8},
+        new int[] {5,4,8,3},
         new int[] {3,2,9,6},
         new int[] {1,2,7,5},
         new int[] {3,6,5,1},
@@ -52,10 +51,10 @@ public class ColoredLetters : MonoBehaviour
 	
     int[][] subsequentScores = new int[][]
     {
-        new int[] {3,1,2,6},
+        new int[] {3,1,6,7},
         new int[] {7,2,2,8},
         new int[] {2,2,3,6},
-        new int[] {5,9,8,3},
+        new int[] {5,9,6,3},
         new int[] {4,1,8,5},
         new int[] {4,2,6,1},
         new int[] {2,6,7,3},
@@ -64,7 +63,7 @@ public class ColoredLetters : MonoBehaviour
         new int[] {1,7,8,5},
         new int[] {3,6,1,8},
         new int[] {9,4,8,8},
-        new int[] {9,3,8,6},
+        new int[] {3,8,8,6},
         new int[] {2,4,1,3},
         new int[] {5,2,7,1},
         new int[] {4,1,4,2},
@@ -107,7 +106,7 @@ public class ColoredLetters : MonoBehaviour
 	void PressKey(int Press)
 	{
 		keys[Press].AddInteractionPunch(0.2f);
-		Audio.PlayGameSoundAtTransform(KMSoundOverride.SoundEffect.BigButtonPress, transform);
+		Audio.PlayGameSoundAtTransform(KMSoundOverride.SoundEffect.BigButtonPress, keys[Press].transform);
 		if (!solved)
         {
 			if (scores[Press] == order[Stage] && new[] {Press}.Any(c => !Pressed.Contains(c)))
@@ -238,4 +237,20 @@ public class ColoredLetters : MonoBehaviour
 			}
 		}
 	}
+
+    IEnumerator TwitchHandleForcedSolve()
+    {
+        int start = Stage;
+        for (int i = start; i < 4; i++)
+        {
+            List<int> presses = new List<int>();
+            for (int j = 0; j < 4; j++)
+            {
+                if (scores[j] == order[i])
+                    presses.Add(j);
+            }
+            keys[presses.PickRandom()].OnInteract();
+            yield return new WaitForSecondsRealtime(0.2f);
+        }
+    }
 }
