@@ -246,7 +246,7 @@ public class ColoredLetters : MonoBehaviour
             List<int> presses = new List<int>();
             for (int j = 0; j < 4; j++)
             {
-                if (scores[j] == order[i])
+                if (scores[j] == order[i] && !Pressed.Contains(j))
                     presses.Add(j);
             }
             keys[presses.PickRandom()].OnInteract();
